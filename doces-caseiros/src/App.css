@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+/*Mudando a cor de fundo do site*/
+body {
+  background-color: #FFF8E9;
+}
+
+
