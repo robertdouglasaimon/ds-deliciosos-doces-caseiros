@@ -1,0 +1,23 @@
+.section2 {
+    width: 100%;
+    padding: 60px 20px; /* Ajuste no espaçamento interno */
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centraliza os elementos dentro da section */
+    min-height: 400px; /* Garante espaço suficiente */
+}
+
+.cardo-depoimento {
+    width: 80%;
+    max-width: 500px;
+    margin-top: 20px; /* Ajuste fino para não empurrar elementos para baixo */
+}
+
+.foto-depoimento {
+    width: 250px; /* Ajuste para um tamanho menor */
+    height: auto; /* Mantém a proporção original */
+    display: block;
+    margin: 0 auto 10px; /* Centraliza a imagem e adiciona margem abaixo */
+}

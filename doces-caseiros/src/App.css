@@ -39,7 +39,20 @@
 
 /*Mudando a cor de fundo do site*/
 body {
-  background-color: #FFF8E9;
+  background-color: #FFFAEB;
 }
+
+main {
+  min-height: 85vh; /* Garante que tudo fique alinhado */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Mantém os elementos ordenados */
+  gap: 30px; /* Espaçamento adequado entre os elementos */
+  padding: 0px 0px 90px 0px;
+}
+
+
+
 
 
