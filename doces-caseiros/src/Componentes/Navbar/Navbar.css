@@ -3,32 +3,62 @@
     padding: 15px 30px;
   }
 
-  .custom-navbar .navbar-collapse {
-    justify-content: flex-end; /* Move os links para a direita */
+.custom-navbar .navbar-collapse {
+  justify-content: flex-end; /* Move os links para a direita */
+}
+  
+.custom-button {
+  margin-left: -500px; /* Empurra os 3 botões do NAV para a direita */
+}
+  
+  
+.custom-link {
+  font-weight: bold;
+  color: #333;
+  margin: 0 15px;
+}
+
+.btn-admin {
+  background-color: #f7931e; /* Laranja igual ao modelo */
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  width: auto;
+  text-align: center;
+}
+
+/*Logo*/
+.custom-logo {
+  height: 100px; /* Tamanho reduzido */
+  width: auto; /* Mantém proporção */
+}
+
+/*----------MOBILE-------------------------------------------------------------------------------------*/
+  
+@media (max-width: 992px) {
+  .btn-admin {
+    width: 100%; /* Para alinhar dentro do menu em telas menores */
   }
+}
   
-  .custom-button {
-    margin-left: -500px; /* Empurra os 3 botões do NAV para a direita */
-  }
-  
-  
-  .custom-link {
-    font-weight: bold;
-    color: #333;
-    margin: 0 15px;
-  }
-  
-  .custom-button {
-    background-color: #f7931e;
-    color: white;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 5px;
+@media (max-width: 992px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 60px; /* Ajuste conforme necessário */
+    left: 0;
+    width: 100%;
+    background-color: #ffffff; /* Fundo sólido para o menu */
+    z-index: 1000; /* Garantir que fique sobre os elementos abaixo */
+    padding: 10px 0;
   }
 
-  /*Logo*/
-  .custom-logo {
-    height: 100px; /* Tamanho reduzido */
-    width: auto; /* Mantém proporção */
+  .custom-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+}
   
+

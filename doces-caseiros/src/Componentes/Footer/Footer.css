@@ -1,0 +1,32 @@
+.custom-footer {
+    background-color: #8B5E3C;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 0; /* Ajustando altura */
+    position: fixed; /* Mantém fixo no final */
+    bottom: 0; /* Cola no rodapé */
+    width: 100%; /* Ocupa toda a largura */
+}
+
+
+  p {
+    padding: 10px;
+    margin: 0px 0px 0px 0px;
+  }
+
+a {
+  text-decoration: none;
+  color: #4e2506;
+}
+
+a:hover {
+  text-decoration: none;
+  color: rgb(247, 253, 255);
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+}
