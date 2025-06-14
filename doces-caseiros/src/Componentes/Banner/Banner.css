@@ -1,0 +1,36 @@
+.banner {
+    position: relative;
+    width: 100%;
+    height: 400px;
+  }
+  
+  .banner-image {
+    max-width: 80vw; /* Se adapta ao tamanho da tela */
+    height: auto; /* Mantém proporção */
+    object-fit: cover;
+    position: absolute;
+    top: -2rem;
+    right: 6vw; /* Mantém flexível para telas menores */
+  }
+    
+.banner-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+  
+.btn-primary {
+  background-color: #f7931e;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+p {
+  padding-top: 200px; 
+  color: #532908;
+  font-weight: 495;
+}

@@ -1,0 +1,34 @@
+.custom-navbar {
+    background-color: #fff;
+    padding: 15px 30px;
+  }
+
+  .custom-navbar .navbar-collapse {
+    justify-content: flex-end; /* Move os links para a direita */
+  }
+  
+  .custom-button {
+    margin-left: -500px; /* Empurra os 3 botões do NAV para a direita */
+  }
+  
+  
+  .custom-link {
+    font-weight: bold;
+    color: #333;
+    margin: 0 15px;
+  }
+  
+  .custom-button {
+    background-color: #f7931e;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+
+  /*Logo*/
+  .custom-logo {
+    height: 100px; /* Tamanho reduzido */
+    width: auto; /* Mantém proporção */
+  }
+  
