@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:ds-sistema-gerenciamento}/ds_banco.db",
+            "name": "robertdouglasaimon",
+            "group": "robertdouglasaimon"
+        }
+    ]
+}
