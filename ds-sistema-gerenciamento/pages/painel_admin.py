@@ -12,12 +12,20 @@ def conectar():
 if "usuario_logado" not in st.session_state:
     st.warning("🚨 Acesso negado! Volte para a tela de login.")
     st.stop()
+    
 
 # **🎨 Painel administrativo**
 st.title(f"Painel Administrativo 🍬 - Bem-vindo, {st.session_state['usuario_logado']}!")
 
+# **🚪 Botão de saída**
+if st.sidebar.button("🚪 Sair"):
+    del st.session_state["usuario_logado"]
+    st.success("✅ Você saiu do sistema!")
+    st.stop()
+
+
 # **📌 Criar menu lateral de navegação**
-aba = st.sidebar.radio("Navegação", ["Cadastro", "Filtragem", "Categorias", "Relatórios"])
+aba = st.sidebar.radio("Navegação", ["Cadastro", "Filtragem", "Categorias", "Relatórios", "Clientes"])
 
 if aba == "Cadastro":
     st.header("Cadastro de Produtos")
@@ -34,6 +42,23 @@ if aba == "Cadastro":
         conn.commit()
         conn.close()
         st.success("✅ Produto cadastrado com sucesso!")
+        
+# **📊 Cadastro de Clientes**       
+elif aba == "Clientes":
+    st.header("Cadastro de Clientes")
+    nome_cliente = st.text_input("Nome do Cliente")
+    email_cliente = st.text_input("Email do Cliente")
+    telefone_cliente = st.text_input("Telefone")
+    
+    if st.button("Cadastrar Cliente"):
+        conn = conectar()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO clientes (nome, email, telefone) VALUES (?, ?, ?)", 
+                       (nome_cliente, email_cliente, telefone_cliente))
+        conn.commit()
+        conn.close()
+        st.success("✅ Cliente cadastrado com sucesso!")
+
 
 elif aba == "Filtragem":
     st.header("📊 Filtragem de dados")
