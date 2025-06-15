@@ -1,6 +1,9 @@
 import streamlit as st
 import sqlite3
 
+# Configuração inicial da página
+st.set_page_config(page_title="Login - Administrador", layout="centered")
+
 # Função para conectar ao banco SQLite
 def conectar():
     return sqlite3.connect("ds_banco.db")
@@ -16,7 +19,6 @@ def autenticar(usuario, senha):
 
 # Interface de Login
 st.title("Login - Administrador")
-
 usuario = st.text_input("Usuário")
 senha = st.text_input("Senha", type="password")
 
@@ -25,9 +27,12 @@ if st.button("Entrar"):
     if tipo:
         st.success(f"Bem-vindo, {usuario}! Você está logado como {tipo[0]}.")
         st.session_state["usuario_logado"] = usuario
+        
+        # Redirecionamento manual via link
+        st.write("Clique no link abaixo para acessar o painel:")
+        st.markdown("[Ir para o Painel](pages/painel_admin.py)", unsafe_allow_html=True)
+
     else:
         st.error("Usuário ou senha incorretos!")
 
-# Redirecionamento pós-login
-if "usuario_logado" in st.session_state:
-    st.switch_page("pages/painel_admin.py")  # Arquivo do painel de administração
+
