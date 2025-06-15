@@ -215,24 +215,37 @@ elif aba == "Relatórios":
 elif aba == "Filtragem":
     st.header("📊 Filtragem de Dados")
 
-    filtro_nome = st.text_input("🔍 Filtrar por Nome do Cliente ou Produto", key="filtro_nome")
+    filtro_produto = st.text_input("🔍 Filtrar por ID do Produto", key="filtro_produto")
+    filtro_cliente = st.text_input("🔍 Filtrar por ID do Cliente", key="filtro_cliente")
     filtro_data = st.date_input("📆 Filtrar por Data", key="filtro_data")
 
     if st.button("Buscar"):
         conn = conectar()
         cursor = conn.cursor()
-        
+
+        # **Verificar se a tabela existe**
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='vendas'")
+        tabela_existe = cursor.fetchone()
+        if not tabela_existe:
+            st.error("🚨 A tabela 'vendas' não existe no banco de dados.")
+            conn.close()
+            st.stop()
+
         # **Corrigir formato da data para SQLite**
         filtro_data_str = filtro_data.strftime("%Y-%m-%d") if filtro_data else None
 
         query = "SELECT * FROM vendas WHERE 1=1"
         params = []
 
-        if filtro_nome:
-            query += " AND nome LIKE ?"
-            params.append(f'%{filtro_nome}%')
+        if filtro_produto:
+            query += " AND produto_id = ?"
+            params.append(filtro_produto)
 
-        if filtro_data:
+        if filtro_cliente:
+            query += " AND cliente_id = ?"
+            params.append(filtro_cliente)
+
+        if filtro_data_str:
             query += " AND data >= ?"
             params.append(filtro_data_str)
 
@@ -246,11 +259,11 @@ elif aba == "Filtragem":
             st.warning("🚨 Nenhum resultado encontrado!")
 
     # **Tabela Geral**
-    st.subheader("📋 Dados Gerais do Banco")
+    st.subheader("📋 Todas as Vendas Registradas")
     conn = conectar()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM vendas")
-    dados_gerais = cursor.fetchall()
+    vendas_gerais = cursor.fetchall()
     conn.close()
     
-    st.write(dados_gerais)
+    st.write(vendas_gerais)
