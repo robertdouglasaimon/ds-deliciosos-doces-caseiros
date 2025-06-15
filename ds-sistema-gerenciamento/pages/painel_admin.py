@@ -121,7 +121,7 @@ elif aba == "Produtos":
     else:
         st.write("Nenhum produto cadastrado.")
 
-# **📌 Filtragem de Dados**
+# **📌 Filtragem de Dados + Tabela Geral**
 elif aba == "Filtragem":
     st.header("📊 Filtragem de Dados")
     filtro_nome = st.text_input("Filtrar por Nome")
@@ -150,6 +150,39 @@ elif aba == "Filtragem":
         else:
             st.warning("🚨 Nenhum resultado encontrado!")
 
+    # **Tabela Geral**
+    st.subheader("📋 Dados Gerais do Banco")
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM vendas")
+    dados_gerais = cursor.fetchall()
+    conn.close()
+    
+    st.write(dados_gerais)
+
+# **📌 Gerenciamento de Categorias**
+elif aba == "Categorias":
+    st.header("🗂️ Gerenciamento de Categorias")
+
+    nova_categoria = st.text_input("Nova Categoria")
+    if st.button("Adicionar Categoria"):
+        conn = conectar()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO categorias (nome) VALUES (?)", (nova_categoria,))
+        conn.commit()
+        conn.close()
+        st.success(f"✅ Categoria '{nova_categoria}' adicionada!")
+
+    # **Excluir categoria**
+    categoria_excluir = st.selectbox("Selecione uma categoria para excluir", categorias_disponiveis)
+    if st.button("Excluir Categoria"):
+        conn = conectar()
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM categorias WHERE nome = ?", (categoria_excluir,))
+        conn.commit()
+        conn.close()
+        st.success("🚨 Categoria removida com sucesso!")
+
 # **📌 Cadastro e exclusão de Clientes**
 elif aba == "Clientes":
     st.header("📋 Cadastro de Clientes")
@@ -168,7 +201,6 @@ elif aba == "Clientes":
         st.success("✅ Cliente cadastrado!")
 
     st.subheader("📋 Lista de Clientes")
-    
     conn = conectar()
     cursor = conn.cursor()
     cursor.execute("SELECT id, nome, email, telefone, endereco FROM clientes")
@@ -177,8 +209,6 @@ elif aba == "Clientes":
 
     if clientes:
         st.write(clientes)
-        
-        # **Excluir cliente**
         cliente_excluir = st.selectbox("Selecione um cliente para excluir", [f"{c[1]} - {c[2]}" for c in clientes])
         
         if st.button("Excluir Cliente"):
