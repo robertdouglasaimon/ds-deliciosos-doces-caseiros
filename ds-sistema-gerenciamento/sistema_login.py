@@ -6,7 +6,7 @@ st.set_page_config(page_title="Login - Administrador", layout="centered")
 
 # Função para conectar ao banco SQLite
 def conectar():
-    return sqlite3.connect("ds_banco.db")
+    return sqlite3.connect("ds-sistema-gerenciamento/ds_banco.db")
 
 # Função para garantir que a tabela `usuarios` existe no banco
 def inicializar_banco():

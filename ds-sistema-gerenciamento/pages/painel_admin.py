@@ -6,7 +6,7 @@ st.set_page_config(page_title="Painel Administrativo", layout="wide")
 
 # Função para conectar ao banco SQLite
 def conectar():
-    return sqlite3.connect("ds_banco.db")
+    return sqlite3.connect("ds-sistema-gerenciamento/ds_banco.db")
 
 # Verificar login antes de exibir o painel
 if "usuario_logado" not in st.session_state:
