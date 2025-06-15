@@ -168,6 +168,7 @@ elif aba == "Clientes":
         st.success("✅ Cliente cadastrado!")
 
     st.subheader("📋 Lista de Clientes")
+    
     conn = conectar()
     cursor = conn.cursor()
     cursor.execute("SELECT id, nome, email, telefone, endereco FROM clientes")
