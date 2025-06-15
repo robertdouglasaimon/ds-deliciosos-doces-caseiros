@@ -133,6 +133,45 @@ elif aba == "Clientes":
     if st.button("Cadastrar Cliente"):
         conn = conectar()
         cursor = conn.cursor()
+        cursor.execute("INSERT INTO clientes (nome, email, telefone, endereco) VALUES (?, ?, ?, ?)", 
+                       (nome_cliente, email_cliente, telefone_cliente, endereco_cliente))
+        conn.commit()
+        conn.close()
+        st.success("✅ Cliente cadastrado!")
+
+    # **Quadro de Clientes Cadastrados**
+    st.subheader("📋 Clientes Cadastrados")
+
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, nome, email, telefone, endereco FROM clientes")
+    clientes = cursor.fetchall()
+    conn.close()
+
+    if clientes:
+        st.write(clientes)
+        cliente_excluir = st.selectbox("Selecione um cliente para excluir", [f"{c[1]} - {c[2]}" for c in clientes])
+        
+        if cliente_excluir and st.button("Excluir Cliente"):
+            cliente_id = [c[0] for c in clientes if f"{c[1]} - {c[2]}" == cliente_excluir][0]
+            conn = conectar()
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM clientes WHERE id = ?", (cliente_id,))
+            conn.commit()
+            conn.close()
+            st.success("🚨 Cliente removido com sucesso!")
+            st.experimental_rerun()
+    else:
+        st.write("Nenhum cliente cadastrado.")
+    st.header("📋 Cadastro de Clientes")
+    nome_cliente = st.text_input("Nome do Cliente")
+    email_cliente = st.text_input("Email do Cliente")
+    telefone_cliente = st.text_input("Telefone")
+    endereco_cliente = st.text_area("Endereço Completo")
+
+    if st.button("Cadastrar Cliente"):
+        conn = conectar()
+        cursor = conn.cursor()
         
         # **Verificar se a tabela existe**
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='clientes'")
@@ -371,6 +410,47 @@ elif aba == "Relatórios":
     st.write(relatorio_financeiro)
 
 elif aba == "Filtragem":
+    st.header("📊 Filtragem de Dados")
+
+    filtro_nome = st.text_input("🔍 Filtrar por Nome do Cliente ou Produto", key="filtro_nome")
+    filtro_data = st.date_input("📆 Filtrar por Data", key="filtro_data")
+
+    if st.button("Buscar"):
+        conn = conectar()
+        cursor = conn.cursor()
+        
+        # **Corrigir formato da data para SQLite**
+        filtro_data_str = filtro_data.strftime("%Y-%m-%d") if filtro_data else None
+
+        query = "SELECT * FROM vendas WHERE 1=1"
+        params = []
+
+        if filtro_nome:
+            query += " AND nome LIKE ?"
+            params.append(f'%{filtro_nome}%')
+
+        if filtro_data:
+            query += " AND data >= ?"
+            params.append(filtro_data_str)
+
+        cursor.execute(query, params)
+        resultado = cursor.fetchall()
+        conn.close()
+
+        if resultado:
+            st.write("📋 Resultados encontrados:", resultado)
+        else:
+            st.warning("🚨 Nenhum resultado encontrado!")
+
+    # **Tabela Geral**
+    st.subheader("📋 Dados Gerais do Banco")
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM vendas")
+    dados_gerais = cursor.fetchall()
+    conn.close()
+    
+    st.write(dados_gerais)
     st.header("📊 Filtragem de Dados")
 
     filtro_nome = st.text_input("Filtrar por Nome do Cliente ou Produto")
