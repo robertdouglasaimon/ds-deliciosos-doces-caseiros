@@ -44,7 +44,7 @@ cursor = conn.cursor()
 cursor.execute("SELECT * FROM usuarios")
 usuarios = cursor.fetchall()
 conn.close()
-st.write("📋 Usuários cadastrados no banco:", usuarios)
+# st.write("📋 Usuários cadastrados no banco:", usuarios)
 
 # **🆕 Botão para adicionar usuário teste**
 if st.button("Adicionar usuário teste"):
@@ -66,6 +66,6 @@ if st.button("Entrar"):
         st.session_state["usuario_logado"] = usuario
 
         # **✅ Redirecionamento agora 100% funcional!**
-        st.switch_page("/painel-adm-ds-doces-caseiros")
+        st.switch_page("ds-sistema-gerenciamento/pages/painel_admin.py")
     else:
         st.error("🚨 Usuário ou senha incorretos!")
