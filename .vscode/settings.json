@@ -1,0 +1,23 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "robertdouglasaimon",
+            "database": "centro_treinamentos",
+            "username": "robertdouglasaimon"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:ds-deliciosos-doces-caseiros}/ds-sistema-gerenciamento/ds_banco.db",
+            "name": "robertdouglasaimon"
+        }
+    ]
+}

@@ -1,23 +1,26 @@
 import sqlite3
 
-# Inserindado dados no banco manualmente #
-
+# **💾 Função para conectar ao banco**
 def conectar():
-    return sqlite3.connect("ds_banco.db")
+    return sqlite3.connect("ds-sistema-gerenciamento/ds_banco.db")
 
-def iserir_dados():
+# **🔧 Função para atualizar a tabela clientes**
+def atualizar_banco():
     conn = conectar()
     cursor = conn.cursor()
-    cursor.execute("""
-        INSERT INTO usuarios (
-        nome, 
-        senha, 
-        tipo
-        ) 
-        VALUES 
-        ('robertdouglasaimon', 'Douglas362500414@@@@', 'admin'),
-        ('ds_diego', 'DsDiego2025', 'admin');
-    """)
 
+    # **Verificar se as colunas já existem antes de adicionar**
+    cursor.execute("PRAGMA table_info(clientes)")
+    colunas = [col[1] for col in cursor.fetchall()]
 
+    if "email" not in colunas:
+        cursor.execute("ALTER TABLE clientes ADD COLUMN email TEXT")
 
+    if "endereco" not in colunas:
+        cursor.execute("ALTER TABLE clientes ADD COLUMN endereco TEXT")
+
+    conn.commit()
+    conn.close()
+
+# **Executar a atualização no banco**
+atualizar_banco()
