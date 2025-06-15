@@ -66,6 +66,6 @@ if st.button("Entrar"):
         st.session_state["usuario_logado"] = usuario
 
         # **✅ Redirecionamento agora 100% funcional!**
-        st.switch_page("painel_admin")
+        st.switch_page("/painel-adm-ds-doces-caseiros")
     else:
         st.error("🚨 Usuário ou senha incorretos!")
