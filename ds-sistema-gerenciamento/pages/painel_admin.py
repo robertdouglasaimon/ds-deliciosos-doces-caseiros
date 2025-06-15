@@ -70,7 +70,7 @@ if st.sidebar.button("🚪 Sair"):
     st.stop()
 
 # **📌 Criar menu lateral de navegação**
-aba = st.sidebar.radio("Navegação", ["Cadastro", "Produtos", "Filtragem", "Categorias", "Relatórios", "Clientes"])
+aba = st.sidebar.radio("Navegação", ["Cadastro", "Vendas Cadastradas", "Produtos", "Filtragem", "Categorias", "Relatórios", "Clientes"])
 
 # **📌 Cadastro de Produtos**
 if aba == "Cadastro":
