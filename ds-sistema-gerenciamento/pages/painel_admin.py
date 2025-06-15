@@ -74,21 +74,58 @@ elif aba == "Filtragem":
         st.write("Resultados encontrados:", resultado)
 
 elif aba == "Categorias":
-    st.header("🗂️ Visualização por Categorias")
-    conn = conectar()
-    cursor = conn.cursor()
-    cursor.execute("SELECT DISTINCT categoria FROM produtos")
-    categorias = cursor.fetchall()
-    conn.close()
+    st.header("🗂️ Gerenciamento de Categorias")
 
-    for categoria in categorias:
-        st.subheader(categoria[0])
+    # **Adicionar nova categoria**
+    nova_categoria = st.text_input("Nova Categoria")
+    if st.button("Adicionar Categoria"):
         conn = conectar()
         cursor = conn.cursor()
-        cursor.execute("SELECT nome, preco FROM produtos WHERE categoria = ?", (categoria[0],))
-        produtos = cursor.fetchall()
+        cursor.execute("INSERT INTO categorias (nome) VALUES (?)", (nova_categoria,))
+        conn.commit()
         conn.close()
-        st.write(produtos)
+        st.success(f"✅ Categoria '{nova_categoria}' adicionada!")
+
+    # **Selecionar uma categoria existente para inserir produtos**
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT nome FROM categorias")
+    categorias_disponiveis = [cat[0] for cat in cursor.fetchall()]
+    conn.close()
+
+    categoria_selecionada = st.selectbox("Escolha uma categoria para adicionar produtos", categorias_disponiveis)
+
+    # **Adicionar um produto novo ou existente na categoria**
+    st.subheader(f"Adicionar produto na categoria '{categoria_selecionada}'")
+    nome_produto = st.text_input("Nome do Produto")
+    preco_produto = st.number_input("Preço", min_value=0.01)
+    quantidade_produto = st.number_input("Quantidade", min_value=1)
+
+    if st.button("Adicionar Produto na Categoria"):
+        conn = conectar()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO produtos (nome, preco, quantidade, categoria) VALUES (?, ?, ?, ?)",
+                       (nome_produto, preco_produto, quantidade_produto, categoria_selecionada))
+        conn.commit()
+        conn.close()
+        st.success(f"✅ Produto '{nome_produto}' adicionado à categoria '{categoria_selecionada}'!")
+
+    # **Tabela de visualização de categorias e seus produtos**
+    st.subheader("📋 Produtos por Categoria")
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT nome, categoria, preco FROM produtos ORDER BY categoria")
+    produtos_por_categoria = cursor.fetchall()
+    conn.close()
+
+    for categoria in categorias_disponiveis:
+        st.subheader(f"📂 {categoria}")
+        produtos_na_categoria = [p for p in produtos_por_categoria if p[1] == categoria]
+        if produtos_na_categoria:
+            st.write(produtos_na_categoria)
+        else:
+            st.write("Nenhum produto nesta categoria ainda.")
+
 
 elif aba == "Relatórios":
     st.header("📑 Relatórios Financeiros")
