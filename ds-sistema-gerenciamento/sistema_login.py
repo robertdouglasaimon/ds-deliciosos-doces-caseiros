@@ -66,6 +66,6 @@ if st.button("Entrar"):
         st.session_state["usuario_logado"] = usuario
 
         # **✅ Redirecionamento agora 100% funcional!**
-        st.switch_page("ds-sistema-gerenciamento/pages/painel_admin.py")
+        st.switch_page("pages/painel_admin.py")
     else:
         st.error("🚨 Usuário ou senha incorretos!")
