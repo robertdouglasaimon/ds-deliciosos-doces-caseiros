@@ -96,6 +96,38 @@ if aba == "Cadastro":
         conn.close()
         st.success("✅ Produto cadastrado com sucesso!")
 
+# **📌 Registro de Vendas**
+elif aba == "Vendas Cadastradas":
+    st.header("📦 Registrar uma Nova Venda")
+
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT nome FROM clientes")
+    clientes_disponiveis = [c[0] for c in cursor.fetchall()]
+    cursor.execute("SELECT nome FROM produtos")
+    produtos_disponiveis = [p[0] for p in cursor.fetchall()]
+    cursor.execute("SELECT nome FROM categorias")
+    categorias_disponiveis = [cat[0] for cat in cursor.fetchall()]
+    conn.close()
+
+    cliente_venda = st.selectbox("Selecione o Cliente", ["Cadastrar Novo Cliente"] + clientes_disponiveis)
+    if cliente_venda == "Cadastrar Novo Cliente":
+        cliente_venda = st.text_input("Digite o Nome do Cliente")
+
+    produto_venda = st.selectbox("Selecione o Produto", produtos_disponiveis)
+    categoria_venda = st.selectbox("Selecione a Categoria", categorias_disponiveis)
+    valor_venda = st.number_input("Valor Total da Compra", min_value=0.01)
+    data_venda = st.date_input("📆 Data da Venda")
+
+    if st.button("Registrar Venda"):
+        conn = conectar()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO vendas (cliente, produto, categoria, valor_total, data) VALUES (?, ?, ?, ?, ?)",
+                       (cliente_venda, produto_venda, categoria_venda, valor_venda, data_venda))
+        conn.commit()
+        conn.close()
+        st.success("✅ Venda registrada com sucesso!")
+
 # **📌 Exibir e excluir produtos**
 elif aba == "Produtos":
     st.header("📦 Produtos Cadastrados")
@@ -186,6 +218,15 @@ elif aba == "Categorias":
 
     st.write(categorias_disponiveis)
 
+    categoria_excluir = st.selectbox("Selecione uma categoria para excluir", categorias_disponiveis)
+    if categoria_excluir and st.button("Excluir Categoria"):
+        conn = conectar()
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM categorias WHERE nome = ?", (categoria_excluir,))
+        conn.commit()
+        conn.close()
+        st.success("🚨 Categoria removida com sucesso!")
+   
 # **📌 Correção na aba Relatórios**
 elif aba == "Relatórios":
     st.header("📑 Relatórios Financeiros")
