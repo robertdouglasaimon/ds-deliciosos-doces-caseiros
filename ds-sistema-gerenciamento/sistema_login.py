@@ -46,15 +46,6 @@ usuarios = cursor.fetchall()
 conn.close()
 # st.write("📋 Usuários cadastrados no banco:", usuarios)
 
-# **🆕 Botão para adicionar usuário teste**
-if st.button("Adicionar usuário teste"):
-    conn = conectar()
-    cursor = conn.cursor()
-    cursor.execute("INSERT INTO usuarios (nome, senha, tipo) VALUES (?, ?, ?)", ("admin", "1234", "Administrador"))
-    conn.commit()
-    conn.close()
-    st.success("✅ Usuário teste 'admin' criado! Tente login com senha '1234'.")
-
 # **✍️ Campos de login**
 usuario = st.text_input("Usuário")
 senha = st.text_input("Senha", type="password")
