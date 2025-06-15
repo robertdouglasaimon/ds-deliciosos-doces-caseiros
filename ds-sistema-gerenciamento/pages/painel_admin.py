@@ -8,6 +8,55 @@ st.set_page_config(page_title="Painel Administrativo", layout="wide")
 def conectar():
     return sqlite3.connect("ds-sistema-gerenciamento/ds_banco.db")
 
+def inicializar_banco():
+    conn = conectar()
+    cursor = conn.cursor()
+    
+    # **Criar tabela de clientes**
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS clientes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome TEXT NOT NULL,
+            email TEXT NOT NULL,
+            telefone TEXT NOT NULL,
+            endereco TEXT NOT NULL
+        )
+    """)
+    
+    # **Criar tabela de categorias**
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS categorias (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome TEXT NOT NULL
+        )
+    """)
+    
+    # **Criar tabela de produtos**
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS produtos (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome TEXT NOT NULL,
+            preco REAL NOT NULL,
+            quantidade INTEGER NOT NULL,
+            categoria TEXT NOT NULL
+        )
+    """)
+    
+    # **Criar tabela de financeiro**
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS financeiro (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            valor REAL NOT NULL,
+            tipo TEXT NOT NULL
+        )
+    """)
+    
+    conn.commit()
+    conn.close()
+
+# **Executar a função ao iniciar o sistema**
+inicializar_banco()
+
 # **🔒 Verificar login antes de exibir o painel**
 if "usuario_logado" not in st.session_state:
     st.warning("🚨 Acesso negado! Volte para a tela de login.")
