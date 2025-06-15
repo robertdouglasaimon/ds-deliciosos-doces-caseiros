@@ -122,73 +122,7 @@ elif aba == "Produtos":
     else:
         st.write("Nenhum produto cadastrado.")
 
-# **📌 Filtragem de Dados + Tabela Geral**
-elif aba == "Filtragem":
-    st.header("📊 Filtragem de Dados")
-    filtro_nome = st.text_input("Filtrar por Nome")
-    filtro_data = st.date_input("Filtrar por Data")
-
-    if st.button("Buscar"):
-        conn = conectar()
-        cursor = conn.cursor()
-        query = "SELECT * FROM vendas WHERE 1=1"
-        params = []
-
-        if filtro_nome:
-            query += " AND nome LIKE ?"
-            params.append(f'%{filtro_nome}%')
-
-        if filtro_data:
-            query += " AND data >= ?"
-            params.append(filtro_data)
-
-        cursor.execute(query, params)
-        resultado = cursor.fetchall()
-        conn.close()
-
-        if resultado:
-            st.write("📋 Resultados encontrados:", resultado)
-        else:
-            st.warning("🚨 Nenhum resultado encontrado!")
-
-    # **Tabela Geral**
-    st.subheader("📋 Dados Gerais do Banco")
-    conn = conectar()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM vendas")
-    dados_gerais = cursor.fetchall()
-    conn.close()
-    
-    st.write(dados_gerais)
-
-# **📌 Gerenciamento de Categorias**
-elif aba == "Categorias":
-    st.header("🗂️ Gerenciamento de Categorias")
-
-    nova_categoria = st.text_input("Nova Categoria")
-    col1, col2 = st.columns(2)
-
-    with col1:
-        if st.button("Adicionar Categoria"):
-            conn = conectar()
-            cursor = conn.cursor()
-            cursor.execute("INSERT INTO categorias (nome) VALUES (?)", (nova_categoria,))
-            conn.commit()
-            conn.close()
-            st.success(f"✅ Categoria '{nova_categoria}' adicionada!")
-
-    with col2:
-        categoria_excluir = st.selectbox("Selecione uma categoria para excluir", categorias_disponiveis)
-        if categoria_excluir and st.button("Excluir Categoria"):
-            conn = conectar()
-            cursor = conn.cursor()
-            cursor.execute("DELETE FROM categorias WHERE nome = ?", (categoria_excluir,))
-            conn.commit()
-            conn.close()
-            st.success("🚨 Categoria removida com sucesso!")
-            st.experimental_rerun()
-
-# **📌 Cadastro e exclusão de Clientes**
+# **📌 Correção na aba Clientes**
 elif aba == "Clientes":
     st.header("📋 Cadastro de Clientes")
     nome_cliente = st.text_input("Nome do Cliente")
@@ -213,4 +147,66 @@ elif aba == "Clientes":
     clientes = cursor.fetchall()
     conn.close()
 
-    st.write(clientes)
+    if clientes:
+        st.write(clientes)
+        cliente_excluir = st.selectbox("Selecione um cliente para excluir", [f"{c[1]} - {c[2]}" for c in clientes])
+        
+        if cliente_excluir and st.button("Excluir Cliente"):
+            cliente_id = [c[0] for c in clientes if f"{c[1]} - {c[2]}" == cliente_excluir][0]
+            conn = conectar()
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM clientes WHERE id = ?", (cliente_id,))
+            conn.commit()
+            conn.close()
+            st.success("🚨 Cliente removido com sucesso!")
+            st.experimental_rerun()
+    else:
+        st.write("Nenhum cliente cadastrado.")
+
+# **📌 Correção na aba Categorias**
+elif aba == "Categorias":
+    st.header("🗂️ Gerenciamento de Categorias")
+
+    nova_categoria = st.text_input("Nova Categoria")
+    if st.button("Adicionar Categoria"):
+        conn = conectar()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO categorias (nome) VALUES (?)", (nova_categoria,))
+        conn.commit()
+        conn.close()
+        st.success(f"✅ Categoria '{nova_categoria}' adicionada!")
+
+    st.subheader("📋 Categorias Existentes")
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT nome FROM categorias")
+    categorias_disponiveis = [cat[0] for cat in cursor.fetchall()]
+    conn.close()
+
+    st.write(categorias_disponiveis)
+
+# **📌 Correção na aba Relatórios**
+elif aba == "Relatórios":
+    st.header("📑 Relatórios Financeiros")
+
+    valor_financeiro = st.number_input("Valor da receita/despesa", min_value=0.01)
+    tipo_financeiro = st.selectbox("Tipo", ["Receita", "Despesa"])
+    descricao_financeiro = st.text_area("Descrição da Receita/Despesa")
+
+    if st.button("Adicionar Valor"):
+        conn = conectar()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO financeiro (valor, tipo, descricao) VALUES (?, ?, ?)",
+                       (valor_financeiro, tipo_financeiro, descricao_financeiro))
+        conn.commit()
+        conn.close()
+        st.success("✅ Valor financeiro registrado!")
+
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT valor, tipo, descricao FROM financeiro")
+    relatorio_financeiro = cursor.fetchall()
+    conn.close()
+
+    st.subheader("📋 Histórico Financeiro")
+    st.write(relatorio_financeiro)
