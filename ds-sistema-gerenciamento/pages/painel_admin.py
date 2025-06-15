@@ -104,6 +104,61 @@ elif aba == "Vendas Cadastradas":
     cursor = conn.cursor()
     
     # **Puxar clientes cadastrados**
+    cursor.execute("SELECT id, nome FROM clientes")
+    clientes_disponiveis = {c[1]: c[0] for c in cursor.fetchall()}
+    
+    # **Puxar produtos cadastrados**
+    cursor.execute("SELECT id, nome FROM produtos")
+    produtos_disponiveis = {p[1]: p[0] for p in cursor.fetchall()}
+    
+    # **Puxar categorias cadastradas**
+    cursor.execute("SELECT nome FROM categorias")
+    categorias_disponiveis = [cat[0] for cat in cursor.fetchall()]
+    
+    conn.close()
+
+    # **Selecionar cliente (ou cadastrar novo)**
+    cliente_venda_nome = st.selectbox("Selecione o Cliente", ["Cadastrar Novo Cliente"] + list(clientes_disponiveis.keys()))
+    if cliente_venda_nome == "Cadastrar Novo Cliente":
+        cliente_venda_nome = st.text_input("Digite o Nome do Cliente")
+        cliente_venda_id = None
+    else:
+        cliente_venda_id = clientes_disponiveis[cliente_venda_nome]
+
+    # **Selecionar produto e categoria**
+    produto_venda_nome = st.selectbox("Selecione o Produto", list(produtos_disponiveis.keys()))
+    produto_venda_id = produtos_disponiveis[produto_venda_nome]
+    categoria_venda = st.selectbox("Selecione a Categoria", categorias_disponiveis)
+
+    # **Inserir valor da compra**
+    valor_venda = st.number_input("Valor Total da Compra", min_value=0.01)
+    
+    # **Inserir data da venda**
+    data_venda = st.date_input("📆 Data da Venda")
+
+    if st.button("Registrar Venda"):
+        conn = conectar()
+        cursor = conn.cursor()
+
+        # **Se for um novo cliente, cadastrá-lo antes de registrar a venda**
+        if cliente_venda_id is None:
+            cursor.execute("INSERT INTO clientes (nome) VALUES (?)", (cliente_venda_nome,))
+            cliente_venda_id = cursor.lastrowid
+
+        cursor.execute("""
+            INSERT INTO vendas_cadastradas (usuario, cliente_id, produto_id, categoria, valor_total, data)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """, ("admin", cliente_venda_id, produto_venda_id, categoria_venda, valor_venda, data_venda))
+
+        conn.commit()
+        conn.close()
+        st.success("✅ Venda registrada com sucesso!")
+    st.header("📦 Registrar uma Nova Venda")
+
+    conn = conectar()
+    cursor = conn.cursor()
+    
+    # **Puxar clientes cadastrados**
     cursor.execute("SELECT nome FROM clientes")
     clientes_disponiveis = [c[0] for c in cursor.fetchall()]
     
