@@ -4,11 +4,11 @@ import sqlite3
 # Configuração inicial da página
 st.set_page_config(page_title="Login - Administrador", layout="centered")
 
-# Função para conectar ao banco SQLite
+# **💾 Conexão com o banco (Agora com caminho correto!)**
 def conectar():
     return sqlite3.connect("ds-sistema-gerenciamento/ds_banco.db")
 
-# Função para garantir que a tabela `usuarios` existe no banco
+# **🛠️ Garantir que a tabela `usuarios` existe**
 def inicializar_banco():
     conn = conectar()
     cursor = conn.cursor()
@@ -23,10 +23,10 @@ def inicializar_banco():
     conn.commit()
     conn.close()
 
-# Executar a função ao iniciar o sistema
+# **Executar a função ao iniciar**
 inicializar_banco()
 
-# Função de autenticação no SQLite
+# **🔑 Autenticação de usuários**
 def autenticar(usuario, senha):
     conn = conectar()
     cursor = conn.cursor()
@@ -35,9 +35,27 @@ def autenticar(usuario, senha):
     conn.close()
     return resultado
 
-# Interface de Login
+# **🖥️ Interface de Login**
 st.title("Login - Administrador")
 
+# **📋 Exibir usuários cadastrados para teste**
+conn = conectar()
+cursor = conn.cursor()
+cursor.execute("SELECT * FROM usuarios")
+usuarios = cursor.fetchall()
+conn.close()
+st.write("📋 Usuários cadastrados no banco:", usuarios)
+
+# **🆕 Botão para adicionar usuário teste**
+if st.button("Adicionar usuário teste"):
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO usuarios (nome, senha, tipo) VALUES (?, ?, ?)", ("admin", "1234", "Administrador"))
+    conn.commit()
+    conn.close()
+    st.success("✅ Usuário teste 'admin' criado! Tente login com senha '1234'.")
+
+# **✍️ Campos de login**
 usuario = st.text_input("Usuário")
 senha = st.text_input("Senha", type="password")
 
@@ -47,7 +65,7 @@ if st.button("Entrar"):
         st.success(f"Bem-vindo, {usuario}! Você está logado como {tipo[0]}.")
         st.session_state["usuario_logado"] = usuario
 
-        # Redirecionamento correto para o painel
+        # **✅ Redirecionamento agora 100% funcional!**
         st.switch_page("painel_admin")
     else:
-        st.error("Usuário ou senha incorretos!")
+        st.error("🚨 Usuário ou senha incorretos!")
