@@ -1,0 +1,10 @@
+/*Comando para iniciar a tela de login do streamlit e executar o sistema*/
+
+1 - Tela de login
+streamlit run sistema_login.py
+
+2 - Tela de Painel_admin
+cd ds-sistema-gerenciamento
+streamlit run pages/painel_admin.py
+
+
