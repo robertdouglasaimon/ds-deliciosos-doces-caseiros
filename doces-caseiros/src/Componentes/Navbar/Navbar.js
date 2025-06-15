@@ -26,12 +26,17 @@ const Navbar = () => {
             <li className="nav-item"><a className="nav-link custom-link" href="#">Sobre</a></li>
             <li className="nav-item"><a className="nav-link custom-link" href="#">Contato</a></li>
             {/* Botão Administrador dentro do menu hamburguer */}
-            <li className="nav-item d-lg-none"><a className="btn btn-admin" href="#">Administrador</a></li>
+            <li className="nav-item d-lg-none">
+            <a className="btn btn-admin" href="https://sistema-controle-ds-doces-caseiros.streamlit.app/" target="_blank" rel="noopener noreferrer">Administrador</a>
+            </li>
           </ul>
         </div>
 
         {/* Botão Administrador visível só em telas grandes */}
-        <a className="btn btn-admin d-none d-lg-block" href="#">Administrador</a>
+        <a className="btn btn-admin d-none d-lg-block" href="https://sistema-controle-ds-doces-caseiros.streamlit.app/" target="_blank" rel="noopener noreferrer">
+          Administrador
+        </a>
+
       </div>
     </nav>
   );
