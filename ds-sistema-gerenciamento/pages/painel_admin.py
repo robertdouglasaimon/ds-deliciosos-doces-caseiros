@@ -279,7 +279,6 @@ elif aba == "Relatórios":
     st.subheader("📋 Histórico Financeiro")
     st.write(relatorio_financeiro)
 
-elif aba == "Filtragem":
     st.header("📊 Filtragem de Dados")
 
     filtro_produto = st.text_input("🔍 Filtrar por ID do Produto", key="filtro_produto")
@@ -333,4 +332,69 @@ elif aba == "Filtragem":
     vendas_gerais = cursor.fetchall()
     conn.close()
     
+    st.write(vendas_gerais)
+
+# **📌 Correção na aba Filtragem**
+elif aba == "Filtragem":
+    st.header("🔎 Filtragem de Dados")
+
+    filtro_nome = st.text_input("🔍 Nome do Cliente ou Produto", key="filtro_nome")
+    filtro_cliente_id = st.text_input("🆔 ID do Cliente", key="filtro_cliente_id")
+    filtro_produto_id = st.text_input("🆔 ID do Produto", key="filtro_produto_id")
+    filtro_data_inicio = st.date_input("📆 Data Inicial", key="filtro_data_inicio")
+    filtro_data_fim = st.date_input("📆 Data Final", key="filtro_data_fim")
+
+    if st.button("Buscar", key="buscar_dados"):
+        conn = conectar()
+        cursor = conn.cursor()
+
+        # **Criar consulta SQL dinâmica**
+        query = """
+            SELECT vc.id, c.nome AS cliente, p.nome AS produto, vc.categoria, vc.valor_total, vc.data
+            FROM vendas_cadastradas vc
+            JOIN clientes c ON vc.cliente_id = c.id
+            JOIN produtos p ON vc.produto_id = p.id
+            WHERE 1=1
+        """
+        params = []
+
+        if filtro_nome:
+            query += " AND (c.nome LIKE ? OR p.nome LIKE ?)"
+            params.extend([f"%{filtro_nome}%", f"%{filtro_nome}%"])
+
+        if filtro_cliente_id:
+            query += " AND vc.cliente_id = ?"
+            params.append(filtro_cliente_id)
+
+        if filtro_produto_id:
+            query += " AND vc.produto_id = ?"
+            params.append(filtro_produto_id)
+
+        if filtro_data_inicio and filtro_data_fim:
+            query += " AND vc.data BETWEEN ? AND ?"
+            params.extend([filtro_data_inicio.strftime("%Y-%m-%d"), filtro_data_fim.strftime("%Y-%m-%d")])
+
+        cursor.execute(query, params)
+        resultado = cursor.fetchall()
+        conn.close()
+
+        if resultado:
+            st.subheader("📋 Resultados da Busca")
+            st.write(resultado)
+        else:
+            st.warning("🚨 Nenhum resultado encontrado!")
+
+    # **Tabela Geral com todas as vendas**
+    st.subheader("📋 Todas as Vendas Registradas")
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT vc.id, c.nome AS cliente, p.nome AS produto, vc.categoria, vc.valor_total, vc.data
+        FROM vendas_cadastradas vc
+        JOIN clientes c ON vc.cliente_id = c.id
+        JOIN produtos p ON vc.produto_id = p.id
+    """)
+    vendas_gerais = cursor.fetchall()
+    conn.close()
+
     st.write(vendas_gerais)
