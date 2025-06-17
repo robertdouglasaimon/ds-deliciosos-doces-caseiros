@@ -1,0 +1,2 @@
+cd doces-caseiros /*Para entrar na pasta do SITE*/
+  npm start  /*Para iniciar o projeto*/

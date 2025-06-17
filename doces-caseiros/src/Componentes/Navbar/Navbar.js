@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Navbar.css";
 import logo from "../../Componentes/img/DS-SemFundo.png";
+import Home from "../../Componentes-Home/Home/Home";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // Estado inicial do menu (fechado)
@@ -10,9 +13,9 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg custom-navbar">
       <div className="container">
         {/* Logo da empresa */}
-        <a href="#" className="navbar-brand">
+        <Link className="navbar-brand" to="/Home">
           <img src={logo} alt="Logo Doces Caseiros" className="custom-logo" />
-        </a>
+        </Link>
 
         {/* Botão de menu hamburguer */}
         <button className="navbar-toggler custom-toggler" type="button" onClick={() => setIsOpen(!isOpen)}>
@@ -22,9 +25,10 @@ const Navbar = () => {
         {/* Links de navegação */}
         <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarNav">
           <ul className="navbar-nav custom-nav">
-            <li className="nav-item"><a className="nav-link custom-link" href="#">Início</a></li>
-            <li className="nav-item"><a className="nav-link custom-link" href="#">Sobre</a></li>
-            <li className="nav-item"><a className="nav-link custom-link" href="#">Contato</a></li>
+            <li className="nav-item"><Link className="nav-link custom-link" to="/Home">Início</Link></li>
+            <li className="nav-item"><Link className="nav-link custom-link" to="/Produtos">Produtos</Link></li>
+            <li className="nav-item"><Link className="nav-link custom-link" to="/Sobre">Sobre</Link></li>
+            <li className="nav-item"><Link className="nav-link custom-link" to="/Contato">Contato</Link></li>
             {/* Botão Administrador dentro do menu hamburguer */}
             <li className="nav-item d-lg-none">
             <a className="btn btn-admin" href="https://sistema-controle-ds-doces-caseiros.streamlit.app/" target="_blank" rel="noopener noreferrer">Administrador</a>
