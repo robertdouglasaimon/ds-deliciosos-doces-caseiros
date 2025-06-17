@@ -1,28 +1,21 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Componentes/Navbar/Navbar';
-import Banner from './Componentes/Banner/Banner';
 import Footer from './Componentes/Footer/Footer';
-import Cards1 from './Componentes/Cards1/Cards1';
-import Section1 from './Componentes/Section1/Section1';
-import Section2 from './Componentes/Section2/Section2';
+import Home from './Componentes-Home/Home/Home';
 
 function App() {
   return (
-    <div className="App">
-        <header>
-          <Navbar />
-          <Banner />
-        </header>
-        <main>
-            <Cards1 />
-            <Section1 />
-            <Section2 />
-        </main>
-        <footer>
-          <Footer />
-        </footer>
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/sobre" element={<Sobre />} /> */}
+        {/* <Route path="/contato" element={<Contato />} /> */}
+      </Routes>
+      <Footer />
+    </Router>
   );
 }
 
