@@ -2,6 +2,8 @@
     background-color: #ffefe0;
     padding: 40px 20px;
     border-radius: 10px;
+    margin-bottom: 60px;
+    overflow: hidden;
   }
   
   .section1-texto h2 {
@@ -14,53 +16,84 @@
     line-height: 1.6;
   }
 
+  .carousel {
+    height: 315px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .carousel .carousel-inner {
+    height: 100%;
+  }
   
+  .carousel-item {
+    height: 100%;
+  }
+  
+  
+  
+  .carousel-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 517px;
+    margin: 0 auto;
+  }
+  
+  .carousel .carousel-item {
+    height: 315px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   
   .carousel .carousel-item img {
     width: 517px;
     height: 315px;
     object-fit: contain;
-    margin: 0 auto;
     border-radius: 15px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   }
   
+  /* Estilo da legenda personalizada */
   .carousel-caption {
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 8px;
-    padding: 6px 10px;
-    font-size: 0.85rem;
-    color: #fff;
-    max-width: 80%;
+    position: absolute;
     bottom: 10px;
-    top: auto;
-    left: 10px;
-    right: auto;
+    left: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #fff;
+    font-size: 0.85rem;
     text-align: left;
+    z-index: 2;
+    max-width: 85%;
   }
-  
   
   .carousel-caption h3 {
     font-size: 1rem;
+    margin-bottom: 4px;
     font-weight: 600;
     color: #fff;
-    margin-bottom: 4px;
   }
   
-  
-  .carousel-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .estilizacao-descricao-slide > p {
-    color: white;
+  .carousel-caption p {
+    margin: 0;
+    color: #fff;
   }
   
-
-/* Animação do neon =D */
-@keyframes neonPulse {
+  .carousel-caption p,
+  .carousel-caption h3 {
+    margin: 0px;
+  }
+  
+  .col {
+    overflow: hidden;
+  }
+    
+  /* Animação neon */
+  @keyframes neonPulse {
     0% {
       box-shadow: 0 0 3px #573009, 0 0 6px #573009, 0 0 9px #573009;
     }
