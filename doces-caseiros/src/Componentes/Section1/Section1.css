@@ -1,31 +1,80 @@
 .section1 {
-    padding: 40px;
-    text-align: center;
-    background-color: #fff;
-    width: 100%;
-    min-height: 300px; /* Garante que tenha altura visível */
-
-    margin-bottom: 0; /* Remove espaço abaixo da section */
-    padding-bottom: 0; /* Reduz espaço interno */
-}
+    background-color: #ffefe0;
+    padding: 40px 20px;
+    border-radius: 10px;
+  }
   
-.section1 h2,
-.section1 p {
-    margin: 0; /* Remove margem dos elementos internos */
-    padding-top: 20px;
-}
+  .section1-texto h2 {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
   
-.carousel {
-    max-width: 98%; /* Ajuste fino para ocupar mais espaço */
-    position: relative;
-    top: -50px;
-    margin-left: auto;
-    margin-right: auto;
-}
+  .section1-texto p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
 
-.carousel-item img {
-    width: 100%;
-    max-height: 500px; /* Ajuste para enquadrar como no anexo */
-    object-fit: cover; /* Mantém proporção sem cortes feios */
-}
+  
+  
+  .carousel .carousel-item img {
+    width: 517px;
+    height: 315px;
+    object-fit: contain;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .carousel-caption {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    color: #fff;
+    max-width: 80%;
+    bottom: 10px;
+    top: auto;
+    left: 10px;
+    right: auto;
+    text-align: left;
+  }
+  
+  
+  .carousel-caption h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  
+  
+  .carousel-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .estilizacao-descricao-slide > p {
+    color: white;
+  }
+  
+
+/* Animação do neon =D */
+@keyframes neonPulse {
+    0% {
+      box-shadow: 0 0 3px #573009, 0 0 6px #573009, 0 0 9px #573009;
+    }
+    50% {
+      box-shadow: 0 0 6px #573009, 0 0 12px #573009, 0 0 18px #573009;
+    }
+    100% {
+      box-shadow: 0 0 3px #573009, 0 0 6px #573009, 0 0 9px #573009;
+    }
+  }
+  
+  .neon-container {
+    border-radius: 12px;
+    animation: neonPulse 2.5s infinite alternate ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+  
