@@ -1,10 +1,11 @@
 import React from "react";
 import "./Section1.css";
-import d1 from "../../Componentes/Section1/img-slide/d1.png";
-import d2 from "../../Componentes/Section1/img-slide/d2.png";
-import d3 from "../../Componentes/Section1/img-slide/d3.png";
-import d4 from "../../Componentes/Section1/img-slide/d4.png";
-import d5 from "../../Componentes/Section1/img-slide/d5.png";
+import d1 from '../../Home/Section1/img-slide/d1.png';
+import d2 from '../../Home/Section1/img-slide/d2.png';
+import d3 from '../../Home/Section1/img-slide/d3.png';
+import d4 from '../../Home/Section1/img-slide/d4.png';
+import d5 from '../../Home/Section1/img-slide/d5.png';
+
 import { Row, Col, Carousel } from "react-bootstrap";
 
 const Section1 = () => {

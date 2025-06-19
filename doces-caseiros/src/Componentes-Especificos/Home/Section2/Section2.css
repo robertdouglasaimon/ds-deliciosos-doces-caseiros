@@ -4,10 +4,22 @@
     text-align: center;
   }
   
+  /*Modificação da Section para envoltar ela em NEON. Tirei porque não gostei, ficou exagerado kkk'*/
+  /* .section2 {
+    background-color: #fff8f0;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 12px;
+    animation: neonPulse 2.5s infinite alternate ease-in-out;
+    transition: all 0.3s ease-in-out;
+  } */
+  
+
   .depoimentos-titulo {
     font-size: 2rem;
+    font-weight: 600;
     margin-bottom: 30px;
-    color: #573009;
+    color: #000000;
   }
   
   .cartas-depoimentos {
@@ -69,5 +81,14 @@
     font-size: 1rem;
     margin-top: 10px;
     font-style: italic;
+  }
+  
+  .depoimentos-intro {
+    font-size: 1.1rem;
+    color: #573009;
+    max-width: 700px;
+    margin: -10px auto 40px auto;
+    text-align: center;
+    line-height: 1.6;
   }
   

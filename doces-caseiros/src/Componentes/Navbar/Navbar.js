@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Navbar.css";
 import logo from "../../Componentes/img/DS-SemFundo.png";
-import Home from "../../Componentes-Home/Home/Home";
 
 
 const Navbar = () => {
@@ -26,8 +25,8 @@ const Navbar = () => {
         <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarNav">
           <ul className="navbar-nav custom-nav">
             <li className="nav-item"><Link className="nav-link custom-link" to="/Home">Início</Link></li>
-            <li className="nav-item"><Link className="nav-link custom-link" to="/Produtos">Produtos</Link></li>
             <li className="nav-item"><Link className="nav-link custom-link" to="/Sobre">Sobre</Link></li>
+            <li className="nav-item"><Link className="nav-link custom-link" to="/Produtos">Produtos</Link></li>
             <li className="nav-item"><Link className="nav-link custom-link" to="/Contato">Contato</Link></li>
             {/* Botão Administrador dentro do menu hamburguer */}
             <li className="nav-item d-lg-none">
