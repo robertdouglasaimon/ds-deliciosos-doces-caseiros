@@ -15,7 +15,7 @@
     
 .banner-content {
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -24,11 +24,15 @@
   padding-bottom: 15px; 
 
 }
+
+.banner-text {
+  margin: 5px;
+}
   
 .btn-primary {
   background-color: #f7931e;
   border: none;
-  padding: 10px 20px;
+  padding: 0px 20px;
   border-radius: 5px;
 }
 

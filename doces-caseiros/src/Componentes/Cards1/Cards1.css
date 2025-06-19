@@ -3,9 +3,78 @@
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
-    padding: 40px;
+    padding: 20px;
   }
   
+
 .card-text {
     padding-top: 60px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.titulo-do-card {
+    text-align: center;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column; /* Mantém os elementos empilhados */
+  align-items: center; /* Centraliza horizontalmente */
+  justify-content: center; /* Centraliza verticalmente */
+}
+
+.button-custom {
+  background-color: #8B5E3C;
+  border: none;
+  color: white; /* Ou ajuste conforme sua identidade visual */
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: capitalize;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px; /* Mantendo um visual moderno */
+}
+
+.button-custom:hover {
+  background-color: #F7931E;
+  transform: scale(1.05); /* Efeito de leve zoom no hover */
+}
+
+
+
+/*Efeito Neon no card pra ficar foderoso uahaha'*/
+@keyframes neonGlow {
+  0% { box-shadow: 0 0 3px #573009, 0 0 6px #573009, 0 0 9px #573009; }
+  50% { box-shadow: 0 0 5px #573009, 0 0 10px #573009, 0 0 15px #573009; }
+  100% { box-shadow: 0 0 3px #573009, 0 0 6px #573009, 0 0 9px #573009; }
+}
+
+
+.card {
+  position: relative;
+  border-radius: 15px; /* 🔥 Arredondando */
+  animation: neonGlow 2s infinite alternate ease-in-out;
+}
+
+
+@keyframes neonBorder {
+  0% { border-image-source: linear-gradient(90deg, #573009 5%, transparent 90%); }
+  50% { border-image-source: linear-gradient(90deg, transparent 5%, #573009 90%); }
+  100% { border-image-source: linear-gradient(90deg, #573009 5%, transparent 90%); }
+}
+
+.card {
+  border: 4px solid;
+  border-image-slice: 1;
+  animation: neonBorder 2s infinite linear;
+}
+
+/*Efeito de zoom de leve no card, só para dar mais uma estilizada :D*/
+.card {
+  transition: transform 0.3s ease-in-out; /* Deixa o movimento suave */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Aumenta levemente o card */
 }

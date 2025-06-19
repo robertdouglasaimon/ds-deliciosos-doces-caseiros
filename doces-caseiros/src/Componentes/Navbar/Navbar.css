@@ -35,6 +35,12 @@
   width: auto; /* Mantém proporção */
 }
 
+.nav-link {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+
 /*----------MOBILE-------------------------------------------------------------------------------------*/
   
 @media (max-width: 992px) {
