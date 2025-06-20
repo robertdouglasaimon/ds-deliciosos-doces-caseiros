@@ -53,6 +53,7 @@
   
   .sobre-texto h2 {
     font-size: 2rem;
+    font-weight: 650;
     color: #573009;
     margin-bottom: 20px;
   }
@@ -71,6 +72,7 @@
   
   .sobre-texto1 h2 {
     font-size: 2rem;
+    font-weight: 650;
     color: #573009;
     text-align: right;
     margin-bottom: 20px;

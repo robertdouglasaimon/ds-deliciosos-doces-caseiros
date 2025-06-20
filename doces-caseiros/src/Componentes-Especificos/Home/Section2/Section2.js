@@ -92,7 +92,7 @@ const Section2 = () => {
         Veja o que alguns clientes disseram após experimentar os sabores que carregam histórias e tradição em cada colherada.
       </p>
 
-      <div className="cartas-depoimentos">
+      <div className="depoimentos-grid">
         {depoimentos.map((item, index) => (
           <div key={index} className="card-depoimento" onClick={() => abrirModal(item)}>
             <img src={item.foto} alt={item.nome} className="foto-card" />
@@ -101,13 +101,15 @@ const Section2 = () => {
         ))}
       </div>
 
+
       <Modal show={show} onHide={fecharModal} centered>
         {selecionado && (
           <Modal.Body>
             <Row className="popup-depoimento">
-              <Col md={5}>
-                <img src={selecionado.foto} alt={selecionado.nome} className="foto-popup" />
-              </Col>
+            <Col md={5} className="col-foto-popup">
+              <img src={selecionado.foto} alt={selecionado.nome} className="foto-popup" />
+            </Col>
+
               <Col md={7}>
                 <h4>{selecionado.nome}</h4>
                 <small className="cidade-popup">{selecionado.cidade}</small>
