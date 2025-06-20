@@ -158,7 +158,8 @@ Valor a ser trocado: ${
 
 Confirmar compra?
 Nota 1: Em caso de desistência, por favor notifique neste contato.
-Nota 2: A taxa de entrega e de 2,00 reais.`;
+Nota 2: A taxa de entrega e de 2,00 reais dentro da cidade de Pirassununga.
+Nota 3: Para entrega em outras cidades, especificar após o envio deste pedido.`;
 
     const encodedMessage = encodeURIComponent(mensagem);
     const numeroWhatsApp = "5519991750239";
