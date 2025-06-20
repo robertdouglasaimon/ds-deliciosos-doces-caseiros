@@ -157,7 +157,8 @@ Valor a ser trocado: ${
     }
 
 Confirmar compra?
-Nota: Em caso de desistência, por favor notifique neste contato.`;
+Nota 1: Em caso de desistência, por favor notifique neste contato.
+Nota 2: A taxa de entrega e de 2,00 reais.`;
 
     const encodedMessage = encodeURIComponent(mensagem);
     const numeroWhatsApp = "5519991750239";
