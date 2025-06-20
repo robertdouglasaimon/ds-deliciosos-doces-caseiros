@@ -91,3 +91,24 @@
     box-shadow: 0 0 18px #ffae42;
   }
 }
+
+@media (max-width: 768px) {
+  .section2 {
+    padding: 60px 16px;
+  }
+
+  .depoimentos-grid {
+    grid-template-columns: 1fr; /* Uma coluna só no mobile */
+    gap: 24px;
+  }
+
+  .depoimentos-intro {
+    font-size: 1rem;
+    padding: 0 12px;
+  }
+
+  .card-depoimento {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
