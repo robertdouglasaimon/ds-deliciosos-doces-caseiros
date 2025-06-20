@@ -1,0 +1,98 @@
+.produtos {
+    padding: 60px 20px;
+    background-color: #fff8f0;
+    min-height: 100vh;
+    text-align: center;
+  }
+  
+  .titulo-produtos {
+    font-size: 2.2rem;
+    font-weight: 650;
+    color: #573009;
+    margin-bottom: 40px;
+  }
+  
+  .produtos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding-bottom: 30px;
+  }
+  
+  .produto-card {
+    width: 280px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .produto-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .produto-card img {
+    height: 220px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .produto-card .card-body {
+    padding: 16px;
+  }
+  
+  .produto-card .card-title {
+    color: #573009;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .produto-card .card-text {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 10px;
+    min-height: 40px;
+  }
+  
+  .preco {
+    font-weight: bold;
+    color: #aa5201;
+    margin-bottom: 10px;
+  }
+  
+  .botoes button {
+    margin: 4px 6px;
+  }
+  
+  .imagem-modal {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .btn-whats {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .intro-produtos {
+    font-size: 1.1rem;
+    color: #573009;
+    max-width: 720px;
+    margin: -20px auto 40px auto;
+    text-align: center;
+    line-height: 1.6;
+  }
+  
+  
+  /* Responsivo */
+  @media (max-width: 768px) {
+    .produto-card {
+      width: 100%;
+      max-width: 360px;
+    }
+  }
+  

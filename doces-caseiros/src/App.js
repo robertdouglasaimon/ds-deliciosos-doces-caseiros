@@ -3,7 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Componentes/Navbar/Navbar';
 import Footer from './Componentes/Footer/Footer';
-import Home from './Componentes-Home/Home/Home';
+import Home from './Componentes-Especificos/Home/Home';
+import Produtos from './Componentes-Especificos/Produtos/Produtos';
+import Sobre from './Componentes-Especificos/Sobre/Sobre';
+import Contato from './Componentes-Especificos/Contato/Contato';
 
 function App() {
   return (
@@ -12,9 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Home" element={<Home />} />
-        <Route path="/Produtos" element={<h1>Página em construção...</h1>} />
-        <Route path="/Sobre" element={<h1>Página em construção...</h1>} />
-        <Route path="/Contato" element={<h1>Página em construção...</h1>} />
+        <Route path="/Sobre" element={<Sobre />} />
+        <Route path="/Produtos" element={<Produtos />} />
+        <Route path="/Contato" element={<Contato />} />
       </Routes>
       <Footer />
     </Router>

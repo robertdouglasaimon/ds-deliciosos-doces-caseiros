@@ -1,0 +1,77 @@
+.contato {
+    padding: 60px 20px;
+    background-color: #fff8f0;
+  }
+  
+  .contato-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .contato-texto {
+    max-width: 480px;
+  }
+  
+  .contato-texto h2 {
+    font-size: 2rem;
+    font-weight: 650;
+    color: #573009;
+    margin-bottom: 20px;
+  }
+  
+  .contato-texto p {
+    font-size: 1.1rem;
+    color: #573009;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  
+  .contato-icones {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .contato-icones img {
+    width: 36px;
+    height: 36px;
+    transition: transform 0.3s ease;
+  }
+  
+  .contato-icones img:hover {
+    transform: scale(1.15);
+  }
+  
+  .contato-img img {
+    width: 350px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+  }
+  
+  .espacamento-foto {
+    padding-bottom: 55px;
+  }
+
+  
+  /* Estilo neon */
+  .neon-border {
+    border: 2px solid #ff7b00;
+    box-shadow: 0 0 12px #ff7b00, 0 0 24px #ffae42;
+    border-radius: 12px;
+    animation: neonPulse 2s infinite alternate;
+  }
+  
+  @keyframes neonPulse {
+    from {
+      box-shadow: 0 0 6px #ff7b00;
+    }
+    to {
+      box-shadow: 0 0 24px #ffae42, 0 0 32px #ff7b00;
+    }
+  }
+  
