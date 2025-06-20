@@ -1,4 +1,4 @@
-/*Comando para iniciar a tela de login do streamlit e executar o sistema*/
+/*Comando para iniciar a tela de login do streamlit e executar o sistema LOCALMENTE*/
 
 1 - Tela de login
 streamlit run sistema_login.py
