@@ -75,3 +75,10 @@
     }
   }
   
+  /* Responsividade para telas menores em celulares e tablets */
+  @media (max-width: 768px) {
+    .espacamento-foto {
+      padding-bottom: 70px;
+    }
+  }
+  
