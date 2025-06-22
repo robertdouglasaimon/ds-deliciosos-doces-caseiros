@@ -13,6 +13,8 @@ import produto7 from './img-produtos/produto7.jpg';
 import produto8 from './img-produtos/produto8.jpg';
 import produto9 from './img-produtos/produto9.jpg';
 import produto10 from './img-produtos/produto10.jpg';
+import produto11 from './img-produtos/produto11.jpg';
+import produto12 from './img-produtos/produto12.jpg';
 
 
 const produtos = [
@@ -96,6 +98,21 @@ const produtos = [
     preco: "R$ 16,00",
     imagem: produto10,
   },
+  {
+    id: 11,
+    nome: "Canjica Branca",
+    descricao: "Milho para canjica, açúcar cristal, leite de sítio e mais!",
+    composicao: "Milho para canjica, açúcar cristal, leite de sítio, leite condensado, creme de leite, cravo e canela. 600g",
+    preco: "R$ 15,00",
+    imagem: produto11,
+  },
+  {
+    id: 12,
+    nome: "Cocada Morena",
+    descricao: "Coco fresco ralado, açúcar e leite condensado para adoçar sua cocada.",
+    composicao: "Coco fresco ralado, açúcar e leite condensado. 300g",
+    preco: "R$ 16,00",
+    imagem: produto12,}
   // Adicione o restante dos produtos aqui da mesma forma
 ];
 
@@ -159,7 +176,7 @@ Valor a ser trocado: ${
 Confirmar compra?
 Nota 1: Em caso de desistência, por favor notifique neste contato.
 Nota 2: A taxa de entrega e de 2,00 reais dentro da cidade de Pirassununga.
-Nota 3: Para entrega em outras cidades, especificar após o envio deste pedido.`;
+Nota 3: Para entrega em outras cidades, especificar após o envio deste pedido para avaliação.`;
 
     const encodedMessage = encodeURIComponent(mensagem);
     const numeroWhatsApp = "5519991750239";
