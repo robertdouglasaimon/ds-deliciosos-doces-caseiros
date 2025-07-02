@@ -94,5 +94,9 @@
       width: 100%;
       max-width: 360px;
     }
+
+    .produtos-grid {
+      padding-bottom: 70px;
+    }
   }
   
