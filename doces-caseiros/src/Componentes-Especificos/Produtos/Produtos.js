@@ -194,8 +194,27 @@ Nota 3: Para entrega em outras cidades, especificar após o envio deste pedido p
       }
     }
   }, []);
-  
 
+    // Função para compartilhar o produto
+    const compartilharProduto = (produto) => {
+    const url = `${window.location.origin}#${produto.id}`;
+    const mensagem = `Experimente esse produto da DS Doces: ${produto.nome}\n${url}`;
+
+    if (navigator.share) {
+      navigator.share({
+        title: produto.nome,
+        text: mensagem,
+        url: url,
+      })
+      .then(() => console.log("Compartilhado com sucesso!"))
+      .catch((error) => console.log("Erro ao compartilhar:", error));
+    } else {
+      navigator.clipboard.writeText(url);
+      alert("Link copiado para área de transferência!");
+    }
+  };
+
+  
   return (
     <div className="produtos">
       <h2 className="titulo-produtos">Produtos</h2>
@@ -218,6 +237,9 @@ Nota 3: Para entrega em outras cidades, especificar após o envio deste pedido p
                 </Button>{" "}
                 <Button size="sm" onClick={() => abrirCompra(item)} variant="success">
                   Compre aqui
+                </Button>
+                <Button size="sm" onClick={() => compartilharProduto(item)} variant="warning">
+                  Compartilhar
                 </Button>
               </div>
             </Card.Body>
