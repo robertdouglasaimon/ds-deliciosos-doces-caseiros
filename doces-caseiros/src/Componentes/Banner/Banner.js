@@ -11,7 +11,7 @@ const Banner = () => {
       <div className="banner-content">
         {/* <h1>Doces Artesanais</h1> */}
         <p className="banner-text">
-          Prove a doçura única de nossos doçes artesanais, feitos com <br/>
+          Prove a doçura única de nossos doces artesanais, feitos com <br/>
           ingredientes selecionados com muito amor.
         </p>
         
