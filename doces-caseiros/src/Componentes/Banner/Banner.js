@@ -1,7 +1,6 @@
 import React from "react";
 import "./Banner.css";
 import banner from "../../Componentes/img/banner.png";
-import banner_sem_fundo from "../../Componentes/img/Sem fundo.png";
 import { Link } from "react-router-dom";
 
 const Banner = () => {

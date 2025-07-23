@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Navbar.css";
 import logo from "../../Componentes/img/DS-SemFundo.png";
+import logo1 from "../../Componentes/img/DS-SemFundo-Contato.png";
 
 
 const Navbar = () => {
@@ -13,7 +14,7 @@ const Navbar = () => {
       <div className="container">
         {/* Logo da empresa */}
         <Link className="navbar-brand" to="/Home">
-          <img src={logo} alt="Logo Doces Caseiros" className="custom-logo" />
+          <img src={logo1} alt="Logo Doces Caseiros" className="custom-logo" />
         </Link>
 
         {/* Botão de menu hamburguer */}

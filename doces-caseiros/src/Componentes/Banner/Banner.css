@@ -48,6 +48,21 @@ p {
 
 /*------MOBILE-----------------*/
 @media (max-width: 768px) {
+  .banner {
+        margin-bottom: -50px;
+    }
+
+  .banner img {
+      height: 95.8px;
+      margin: 0px 0px 0px 5rem;
+      position: relative;
+      top: -5px;
+  }
+
+  .banner-text {
+      margin-top: 25px;
+  }
+
   .banner-content {
       margin-top: -80px;
   }
